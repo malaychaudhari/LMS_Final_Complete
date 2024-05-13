@@ -1,0 +1,45 @@
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{!selectedInventoryCategory? 'Add Inventory Category':
+                'Update Inventory Category'}}</h1>
+            <button type="button" class="btn-close" #closebutton data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="InventoryForm" (ngSubmit)="onFormSubmit()">
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                placeholder="Enter Name" required [value]="selectedInventoryCategory?.name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="invalid">
+                            <small *ngIf=" 
+                           InventoryForm.get('name').errors?.['required'] &&
+                            InventoryForm.get('name').touched
+                          ">
+                                Name is required
+                            </small>
+                            <small *ngIf="
+                            InventoryForm.get('name').hasError('pattern') &&
+                            InventoryForm.get('name').touched
+                          ">
+                                Name should contain only alphanumeric characters, spaces and name length should be less
+                                then 100
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer mt-4">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button *ngIf="selectedInventoryCategory === null" type="submit" class="btn btn-primary"
+                        [disabled]="!InventoryForm.valid">
+                        <span>Add Inventory Category</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

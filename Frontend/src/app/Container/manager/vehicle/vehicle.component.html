@@ -1,0 +1,91 @@
+<div class="inventory">
+  <div class="header">
+    <div class="heading">
+      <h1>Vehicles</h1>
+    </div>
+  </div>
+
+  <div *ngIf="vehicles.length < 1" class="card mt-5 p-5">
+    <h1 class="text-center">No Vehicles Available</h1>
+  </div>
+
+  <div *ngIf="vehicles.length > 0" class="inventory_table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="announceSortChange($event)"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by id"
+        >
+          Id
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleNumber">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by vehicleNumber"
+        >
+          Vehicle Number
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.vehicleNumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleType">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by vehicleType"
+        >
+          Vehicle Type
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.vehicleType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="wareHouseId">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by wareHouseId"
+        >
+          Warehouse Id
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.wareHouseId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isAvailable">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by isAvailable"
+        >
+          IsAvailable
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="badge text-bg-success p-2" *ngIf="element.isAvailable">
+            <span class="h6"> Available</span>
+          </span>
+          <span class="badge text-bg-danger p-2" *ngIf="!element.isAvailable">
+            <span class="h6"> Not Available</span>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

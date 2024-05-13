@@ -1,0 +1,55 @@
+<main>
+    <!-- <ng-container *ngIf="inventory"> -->
+    <div class="card">
+        <div class="card__body">
+            <div class="half">
+                <div class="image">
+                    <!-- <img src="https://images-na.ssl-images-amazon.com/images/I/613A7vcgJ4L._SL1500_.jpg" alt=""> -->
+                    <img src={{inventory.image}} alt="">
+                </div>
+
+                <div class="d-flex mt-4 pt-3">
+                    <div>
+                        <p class="sub fs-5">Quantity</p>
+                    </div>
+                    <!-- <div class="ms-2">
+                        <input type="number" min="1" [attr.max]="inventory.stock" [(ngModel)]="quantity" readonly class="no-spin">
+                    </div> -->
+
+                    <div class="quantity-input">
+                        <button (click)="decrement()" [disabled]="quantity <= 1" class="quantity-btn">-</button>
+                        <input type="text" [value]="quantity" readonly class="quantity-value">
+                        <button (click)="increment()" [disabled]="quantity >= inventory.stock" class="quantity-btn">+</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+                <div class="half">
+                    <div class="featured_text">
+                        <h1>{{inventory.name}}</h1>
+                        <p class="sub">{{inventory.categoryName}}</p>
+                        <div class="description">
+                            <p>{{inventory.description}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <p class="price">{{inventory.price | currency:'INR'}}</p>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            
+            <div class="card__footer d-flex justify-content-center">
+
+                <div *ngIf="inventory.stock<1" >
+                    <button type="button" class="btn btn-danger rounded-5 p-3"  [disabled]="true">Out of Stock</button>
+                </div>
+                <div class="action" *ngIf="inventory.stock>0">
+                    <button type="button" (click)="buyNow(productId)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    <!-- </ng-container> -->
+</main>

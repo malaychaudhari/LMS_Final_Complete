@@ -1,0 +1,123 @@
+<div class="inventory">
+  <div class="header">
+    <div class="heading">
+      <h1>Orders</h1>
+    </div>
+  </div>
+
+  <div *ngIf="orders.length < 1" class="card mt-5 p-5">
+    <h1 class="text-center">No Orders Available</h1>
+  </div>
+
+  <div *ngIf="orders.length > 0" class="inventory_table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="announceSortChange($event)"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by id"
+        >
+          Id
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by userName"
+        >
+          Customer Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by orderDate"
+        >
+          orderDate
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.orderDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalAmount">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by totalAmount"
+        >
+          totalAmount
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.totalAmount | currency : "INR" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="inventoryName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by inventoryName"
+        >
+          Inventory Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.inventoryName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by quantity"
+        >
+          Quantity
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="statusId">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by statusId"
+        >
+          statusId
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span
+            class="badge text-bg-secondary p-2"
+            *ngIf="element.statusId == 1"
+          >
+            <span class="h6"> Placed</span>
+          </span>
+          <span class="badge text-bg-primary p-2" *ngIf="element.statusId == 2">
+            <span class="h6"> Out for delivery</span>
+          </span>
+          <span class="badge text-bg-success p-2" *ngIf="element.statusId == 3">
+            <span class="h6"> Deliverd</span>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

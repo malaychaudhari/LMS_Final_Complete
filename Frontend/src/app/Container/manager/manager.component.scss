@@ -1,0 +1,22 @@
+.manager {
+    display: grid;
+    grid-template-columns: 260px auto;
+}
+.hamburger-manager {
+    display: grid;
+    grid-template-columns: 70px auto;
+    transition: grid-template-columns 0.1s;
+}
+.main-view {
+    display: grid;
+    grid-template-rows: 70px auto;
+
+    height: 100dvh;
+}
+.main-section {
+    padding: 3rem;
+    background-color: #fff6f6;
+
+    height: 100%;
+    overflow-y: auto;
+}

@@ -1,0 +1,185 @@
+<div class="container-fluid">
+  <div class="h2">
+    Customers
+    <hr />
+  </div>
+</div>
+
+<div class="card mt-5 p-5" *ngIf="customers.length < 1">
+  <h2 class="text-center">No customers available</h2>
+</div>
+
+<section
+  class="example-container mat-elevation-z8"
+  tabindex="0"
+  *ngIf="customers.length > 0"
+>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="id" [sticky]="true">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by id"
+      >
+        Id
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by name"
+      >
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by email"
+      >
+        Email
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by phone"
+      >
+        Phone
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by date"
+      >
+        Date
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdAt | date : "dd-MMM-yyyy HH:mm:ss a" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerStatus">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by customerStatus"
+      >
+        Active/Blocked
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span class="badge text-bg-success p-2" *ngIf="element.isActive"
+          ><span class="h6">Active</span></span
+        >
+        <span class="badge text-bg-warning p-2" *ngIf="!element.isActive"
+          ><span class="h6">Blocked</span></span
+        >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action" [stickyEnd]="true">
+      <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="d-flex gap-2 justify-content-center">
+          <!-- <div>
+              <mat-icon
+                class="text-primary"
+                aria-hidden="false"
+                aria-label="Example description icon"
+                fontIcon="description"
+                matTooltip="Detail"
+              ></mat-icon>
+            </div> -->
+          <div
+            *ngIf="element.isActive"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="ConfirmDelete(element.id)"
+          >
+            <mat-icon
+              matTooltip="Block"
+              class="text-danger"
+              aria-hidden="false"
+              aria-label="Example delete icon"
+              fontIcon="lock"
+            ></mat-icon>
+          </div>
+          <div (click)="unblockCustomer(element.id)" *ngIf="!element.isActive">
+            <mat-icon
+              matTooltip="UnBlock"
+              class="text-success"
+              aria-hidden="false"
+              aria-label="Example lock_open icon"
+              fontIcon="lock_open"
+            ></mat-icon>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</section>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Block User</h1>
+        <button
+          #closebutton
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Are you sure you want to block user?</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="resetDeleteId()"
+        >
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteCustomer()">
+          Block
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

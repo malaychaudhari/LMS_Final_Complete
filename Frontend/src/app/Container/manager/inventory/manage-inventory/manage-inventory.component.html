@@ -1,0 +1,154 @@
+<div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">
+        {{ !selectedInventory ? "Add Inventory" : "Update Inventory" }}
+      </h1>
+      <button type="button" class="btn-close" #closebutton data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="InventoryForm" (ngSubmit)="onFormSubmit()">
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-floating">
+              <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter Name" required
+                [value]="selectedInventory?.name" />
+              <label for="name">Name</label>
+            </div>
+            <div class="invalid">
+              <small *ngIf=" 
+                           InventoryForm.get('name').errors?.['required'] &&
+                            InventoryForm.get('name').touched
+                          ">
+                Name is required
+              </small>
+              <small *ngIf="
+                  InventoryForm.get('name').hasError('pattern') &&
+                  InventoryForm.get('name').touched
+                ">
+                Name should contain only alphanumeric characters, spaces and
+                name length should be less then 100
+              </small>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="">
+              <select class="form-select form-control p-3" formControlName="category" id="category"
+                aria-label="Default select example" [value]="selectedInventory?.categoryId">
+                <option value="default" disabled>Select Category</option>
+                <option *ngFor="let item of inventoryCategories" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="invalid">
+              <small *ngIf="
+                            InventoryForm.get('category').errors?.['required'] &&
+                            InventoryForm.get('category').touched ||  !InventoryForm.get('category')
+                          ">
+                Select Category
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-floating">
+              <textarea class="form-control" formControlName="description" placeholder="Enter Description"
+                id="description" style="height: 100px" [value]="selectedInventory?.description"></textarea>
+              <label for="description">Description</label>
+            </div>
+            <div class="invalid">
+              <small *ngIf="
+                            InventoryForm.get('description').errors?.['required'] &&
+                            InventoryForm.get('description').touched
+                          ">
+                Description is required
+              </small>
+              <small *ngIf="
+                  InventoryForm.get('description').hasError('pattern') &&
+                  InventoryForm.get('description').touched
+                ">
+                Description length should be between 5 and 500
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-floating">
+              <input type="number" class="form-control" formControlName="quantity" id="quantity"
+                [value]="selectedInventory?.stock" />
+              <label for="quantity">Quantity</label>
+            </div>
+            <div class="invalid">
+              <small *ngIf="
+                            InventoryForm.get('quantity').errors?.['required'] &&
+                            InventoryForm.get('quantity').touched
+                          ">
+                Quantity is required
+              </small>
+              <small *ngIf="
+                  InventoryForm.get('quantity').hasError('pattern') &&
+                  InventoryForm.get('quantity').touched
+                ">
+                Quantity should be between 1 and 5000
+              </small>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating">
+              <input type="number" class="form-control" formControlName="price" id="price"
+                [value]="selectedInventory?.price" />
+              <label for="price">Price</label>
+            </div>
+            <div class="invalid">
+              <small *ngIf="
+                            InventoryForm.get('price').errors?.['required'] &&
+                            InventoryForm.get('price').touched
+                          ">
+                Price is required
+              </small>
+              <small *ngIf="
+                  InventoryForm.get('price').hasError('pattern') &&
+                  InventoryForm.get('price').touched
+                ">
+                Price should be positive and contain two decimal places.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div>
+              <input class="form-control form-control-md" formControlName="image" id="productImage" type="file"
+                (change)="onFileSelected($event)" />
+            </div>
+            <div class="invalid">
+              <small *ngIf="
+                            InventoryForm.get('image').errors?.['required'] &&
+                            InventoryForm.get('image').touched
+                          ">
+                Image is required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer mt-4">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="selectedInventory === null" type="submit" class="btn btn-primary"
+            [disabled]="!InventoryForm.valid">
+            <span>Add Inventory</span>
+          </button>
+          <button *ngIf="selectedInventory !== null" class="btn btn-primary" [disabled]="!InventoryForm.valid">
+            <span>Update</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

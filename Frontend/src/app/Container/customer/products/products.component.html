@@ -1,0 +1,25 @@
+<div>
+    <main class="main bd-grid">
+        <ng-container *ngFor="let item of inventories">
+            <article class="card">
+                <div class="card__img">
+                    <img  class="" [src]="item.image" (click)="viewProductDetails(item.id)" alt="">
+                    <!-- <img src={{item.image? item?.image:}} (click)="viewProductDetails(item.id)" alt=""> -->
+                </div>
+                <div class="card__name">
+                    <p>{{item.name}}</p>
+                </div>
+
+                <div class="card__precis">
+                    <a href="" class="card__icon"><mat-icon>favorite_border</mat-icon></a>
+                    <div>
+                        <span class="card__preci card__preci--before">{{item.price | currency:'INR'}}</span>
+                    </div>
+                    <a href="" class="card__icon"><mat-icon>shopping_cart_outlined</mat-icon></a>
+                </div>
+            </article>
+        </ng-container>
+
+
+    </main>
+</div>

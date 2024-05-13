@@ -1,0 +1,84 @@
+<div class="container mb-5">
+  
+    <div class="row g-5 mt-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Your Order</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h2 class="my-0">{{orderDetails.name}}</h2>
+                <!-- <small class="text-body-secondary">{{orderDetails.description}}</small> -->
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Quantity</span>
+              <strong>{{orderQuantity}}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total</span>
+              <strong>&#x20B9; {{order.subTotal}}</strong>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Billing address</h4>
+          <!-- <form class="needs-validation was-validated" novalidate=""> -->
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="lastName" [value]="user?.name" disabled>
+              </div>
+    
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" [value]="user.email" disabled>
+              </div>
+    
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" [value]="userAddress.address" disabled>
+              </div>
+
+              <div class="col-md-3">
+                <label for="zip" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" [value]="userAddress.city" disabled>
+              </div>
+    
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" [value]="userAddress.pincode" disabled>
+              </div>
+
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <input type="text" class="form-control" id="country" [value]="userAddress.state" disabled>
+              </div>
+    
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" [value]="userAddress.country" disabled>
+              </div>
+    
+            </div>
+    
+            <hr class="my-4">
+    
+            <h4 class="mb-3">Payment</h4>
+    
+            <div class="my-3">
+              <div class="form-check">
+                <input name="paymentMethod" type="radio" class="form-check-input" checked>
+                <label class="form-check-label" for="cod">Cash on Delivery</label>
+              </div>
+            </div>
+    
+            <hr class="my-4">
+    
+            <input class="w-100 btn btn-primary btn-lg" type="submit" (click)="placeOrder()" value="Place Order">
+          <!-- </form> -->
+        </div>
+      </div>
+</div>

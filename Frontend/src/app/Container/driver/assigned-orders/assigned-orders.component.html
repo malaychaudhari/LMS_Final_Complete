@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="h2">
+      Assigned Orders
+      <hr />
+    </div>
+  </div>
+<div class="card mt-5 p-5" *ngIf="resources.length < 1">
+    <h2 class="text-center">You don't have any orders assigned right now</h2>
+  </div>
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+    *ngIf="resources.length > 0"
+    >
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+            Order Id
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+            Customer Name
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cphone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            Customer Phone
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerPhone}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="caddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Customer Address
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerAddress}} </td>
+    </ng-container>
+
+    <!-- Vehicle -->
+    <ng-container matColumnDef="vehicle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vehicle">
+            Vehicle
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleNumber}} </td>
+    </ng-container>
+
+    <!-- Show Order Status -->
+    <ng-container matColumnDef="orderStatus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by orderStatus">
+            Order Status
+        </th>
+        <td mat-cell *matCellDef="let element"> <span class="badge text-bg-warning p-2"><span class="h6">Out for
+                    Delivery</span></span></td>
+    </ng-container>
+
+
+    <!-- Change Delivery Status -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vehicle">
+            Update Status
+        </th>
+        <td style mat-cell *matCellDef="let element">
+            <div class="d-flex gap-2 justify-content-center">
+                <button type="button" class="btn btn-success btn-sm" (click)="updateStatus(element.orderId)"> Delivered
+                </button>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

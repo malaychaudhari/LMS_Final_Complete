@@ -1,0 +1,9 @@
+<div [ngClass]="{'manager': commonService.sideBar, 'hamburger-manager' : !commonService.sideBar}">
+    <app-side-nav [navigationLinks]="navigationLinks"></app-side-nav>
+    <div class="main-view">
+        <app-navbar></app-navbar>
+        <div class="main-section">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

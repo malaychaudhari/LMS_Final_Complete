@@ -1,0 +1,48 @@
+<div class="inventory">
+  <div class="header">
+    <div class="heading">
+      <h1>Allocated Resource</h1>
+    </div>
+  </div>
+
+  <div *ngIf="allocatedResources.length < 1" class="card mt-5 p-5">
+    <h1 class="text-center">No Allocated Resource Available</h1>
+  </div>
+
+  <div class="mat-elevation-z8" *ngIf="allocatedResources.length > 0">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>orderId</th>
+        <td mat-cell *matCellDef="let row">{{ row.orderId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="driverId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>driverId</th>
+        <td mat-cell *matCellDef="let row">{{ row.driverId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>vehicleId</th>
+        <td mat-cell *matCellDef="let row">{{ row.vehicleId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="assignedDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>assignedDate</th>
+        <td mat-cell *matCellDef="let row">{{ row.assignedDate }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+</div>

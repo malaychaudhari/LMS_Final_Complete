@@ -1,0 +1,159 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+  <div class="bg-light shadow p-3 rounded">
+    <div class="row">
+      <!-- Image column -->
+      <div
+        class="col-md-6 text-center mb-4 mb-md-0 d-flex justify-content-center align-items-center"
+      >
+        <img
+          src="https://expressroadways.in/blog/wp-content/uploads/2022/09/warehouse-in-kolkata.jpg"
+          alt="Image"
+          style="max-width: 100%; height: auto"
+        />
+      </div>
+
+      <!-- Content column -->
+      <div class="col-md-6">
+        <div class="text-center p-5 text-uppercase">
+          <h2 class="fs-1">login</h2>
+        </div>
+
+        <!-- Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Email input -->
+          <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <span class="fa fa-envelope"></span>
+                </span>
+                <input
+                  type="email"
+                  id="emailInput"
+                  class="form-control form-control-lg"
+                  placeholder="xyz@example.com"
+                  formControlName="emailId"
+                />
+              </div>
+              <div
+                *ngIf="
+                  loginForm.get('emailId').invalid &&
+                  loginForm.get('emailId').touched
+                "
+                class="text-danger"
+              >
+                <div *ngIf="loginForm.get('emailId').errors?.['required']">
+                  Email is required
+                </div>
+                <div *ngIf="loginForm.get('emailId').errors?.['pattern']">
+                  Enter valid email
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <span class="fa fa-lock"></span>
+                </span>
+                <input
+                  type="password"
+                  id="passwordInput"
+                  class="form-control form-control-lg"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+              </div>
+              <div
+                *ngIf="
+                  loginForm.get('password').invalid &&
+                  loginForm.get('password').touched
+                "
+                class="text-danger"
+              >
+                <div *ngIf="loginForm.get('password').errors?.['required']">
+                  Password is required
+                </div>
+                <div *ngIf="loginForm.get('password').errors?.['minlength']">
+                  Password should contain at least 6 characters.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkbox -->
+          <!-- <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="rememberMeCheckbox"
+                  formControlName="rememberMe"
+                />
+                <label class="form-check-label" for="rememberMeCheckbox"
+                  >Remember me</label
+                >
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Submit button -->
+          <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary px-4"
+                  style="width: 70%"
+                >
+                  {{ !isLoading ? "Sign In" : "Loading" }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>
+              Don't have an account?
+              <a routerLink="/auth/signup" class="text-primary link-primary"
+                >Register</a
+              >
+            </p>
+
+            <!-- <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating mx-1"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating mx-1"
+            >
+              <i class="fab fa-google"></i>
+            </button>
+
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating mx-1"
+            >
+              <i class="fab fa-twitter"></i>
+            </button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

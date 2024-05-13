@@ -1,0 +1,99 @@
+body {
+    font-family: cursive;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #585858;
+}
+
+#header {
+    background-color: rgb(39, 39, 39);
+    overflow: hidden;
+}
+
+.navbar {
+    padding: 15px 0;
+
+}
+.navbar-nav {
+    .nav-item {
+      .nav-link {
+        &.active {
+          font-weight: bold;
+          color: #EDF828;
+        }
+
+      }
+      &.hover {
+        cursor: pointer;
+      }
+    }
+
+  }
+.navbar a {
+    text-decoration: none;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+// h2.logo {
+//     font-size: 28px;
+//     font-weight: 400;
+//     color: #fff;
+// }
+
+// h2.logo strong {
+//     font-size: 35px;
+//     color: #EDF828;
+//     font-weight: 600;
+// }
+
+.logo {
+    text-align: center;
+    height: 50px;
+  
+    a {
+      height: 100%;
+      svg {
+        height: 100%;
+      }
+    }
+  }
+  
+h2.center-logo {
+    margin: 0 25px;
+}
+
+#navbarSupportedContent {
+    justify-content: center;
+}
+
+ul.navbar-nav li.nav-item {
+    margin-right: 25px;
+}
+
+ul.navbar-nav li.nav-item:last-child {
+    margin-right: 0;
+}
+
+ul.navbar-nav li.nav-item a.nav-link {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show>.nav-link {
+    color: #EDF828;
+}
+
+ul.navbar-nav li.nav-item a.nav-link:hover {
+    color: #EDF828;
+}
+
+.form-control::placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
+}
+

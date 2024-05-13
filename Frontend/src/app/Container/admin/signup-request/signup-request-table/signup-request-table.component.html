@@ -1,0 +1,125 @@
+<div class="card mt-5 p-5" *ngIf="users.length < 1">
+  <h2 class="text-center">No Pending Request</h2>
+</div>
+
+<section
+  class="example-container mat-elevation-z8"
+  tabindex="0"
+  *ngIf="users.length > 0"
+>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="id" [sticky]="true">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by id"
+      >
+        Id
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by name"
+      >
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by email"
+      >
+        Email
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by phone"
+      >
+        Phone
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="licenseNumber">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by licenseNumber"
+      >
+        Licence Number
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.licenseNumber }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by date"
+      >
+        Date
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdAt | date : "dd-MMM-yyyy HH:mm:ss a" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approvalStatus">
+      <th mat-header-cell *matHeaderCellDef>Approval Status</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- {{ element.isApproved }} -->
+        <span class="badge text-bg-warning p-2" *ngIf="element.isApproved == 0"
+          ><span class="h6">Pending</span></span
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action" [stickyEnd]="true">
+      <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="d-flex gap-2 justify-content-center">
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            (click)="approveUser(element.id)"
+          >
+            Approve
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="rejectUser(element.id)"
+          >
+            Reject
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</section>

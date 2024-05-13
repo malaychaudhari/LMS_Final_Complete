@@ -1,0 +1,151 @@
+a {
+  color: #ffffff !important;
+}
+
+// side nav
+.side-nav {
+  color: #ffffff !important;
+  position: relative;
+  padding: 20px 0;
+  // overflow-y:hidden;
+  z-index: 99;
+  height: 100dvh;
+  background: black;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.side-nav_bg-image {
+  position: absolute;
+  height: 95%;
+  overflow: hidden;
+  z-index: -1;
+  background-image: url("../../../assets/Images/Common/mountain_bg_4.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+}
+.side-nav_bg-color {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.8;
+  background: #272727;
+}
+
+// horizontal line
+.h-line {
+  width: 100%;
+  height: 1.5px;
+  background-color: rgba(180, 180, 180, 0.3);
+}
+
+// logo
+.logo {
+  text-align: center;
+  margin-bottom: 40px;
+  height: 50px;
+  padding: 0 2rem 1rem 2rem;
+
+  a {
+    height: 100%;
+    svg {
+      height: 100%;
+      
+    }
+  }
+}
+
+// user
+.user {
+  padding: 0 0.5rem;
+  margin: 20px 0;
+}
+
+// user profile
+.user-profile {
+  display: flex;
+}
+.user-image {
+  width: 35px;
+  height: 35px;
+  margin-right: 1rem;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+.hamburger-image {
+  width: 35px;
+  height: 35px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+// user name
+.user-name {
+  display: flex;
+  align-items: center;
+}
+.user-dropdown-icons {
+  margin-left: 1rem;
+}
+
+// user dropdown links
+.user-dropdown_links {
+  margin-top: 0.5rem;
+}
+.my-profile,
+.logout {
+  padding: 0.5rem;
+
+  &:hover {
+    background-color: #b4b4b445;
+    border-radius: 3px;
+  }
+  svg {
+    margin-right: 26px;
+  }
+}
+
+// navigation links
+.navigation-links {
+  margin-top: 20px;
+
+  ul {
+    li {
+      width: 100%;
+      a {
+        display: inline-block;
+        width: 100%;
+        padding: 15px;
+        border-radius: 3px;
+        margin: 5px 0;
+
+        &:hover {
+          background-color: #b4b4b445;
+        }
+
+        img {
+          width: 27px;
+          height: 27px;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+.active {
+  background-color: #e91e63 !important;
+}
+
+// #e91e63;
