@@ -105,12 +105,23 @@
           <div class="row mb-4">
             <div class="col-md-8 mx-auto">
               <div class="text-center">
+                <!-- <button (click)="signUp(user)" [disabled]="loading" class="button-with-loader">
+                  <span *ngIf="loading" class="loader"></span>
+                  <span *ngIf="!loading">Sign Up</span>
+                </button> -->
                 <button
                   type="submit"
-                  class="btn btn-primary px-4"
-                  style="width: 70%"
+                  class="btn btn-primary px-4  position-relative"
+                  style="width: 70%;"
+                  [disabled]="isLoading || loginForm.invalid" 
                 >
-                  {{ !isLoading ? "Sign In" : "Loading" }}
+                <div class=" button-with-loader" *ngIf="isLoading" >
+                  <span class="loader p-5"></span>
+                </div>
+                <span *ngIf="!isLoading">Sign Up</span>
+                
+
+                  <!-- {{ !isLoading ? "Sign In" : "Loading" }} -->
                 </button>
               </div>
             </div>

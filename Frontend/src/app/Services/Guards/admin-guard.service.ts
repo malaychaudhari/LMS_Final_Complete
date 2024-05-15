@@ -29,7 +29,6 @@ export class AdminGuard {
     | boolean
     | UrlTree {
     const userRole = this.authService.getUserRole();
-    console.log(this.authService.isTokenExpired());
 
     if (!this.authService.isTokenExpired()) {
       if (userRole === 'Admin') {

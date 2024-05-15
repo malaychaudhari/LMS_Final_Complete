@@ -17,6 +17,7 @@ namespace LogisticsManagement.DataAccess.Repository
             _dbContext = dbContext;
         }
 
+        #region ------------ Address Operations ----------------------------------
         public async Task<int> AddAddress(Address address)
         {
             try
@@ -164,30 +165,7 @@ namespace LogisticsManagement.DataAccess.Repository
                 return -1;
             }
         }
-        public async Task<List<OrderDetail>> GetAllOrderDetails(int orderId)
-        {
-            try
-            {
-                List<OrderDetail> orderDetails = await _dbContext.OrderDetails
-                    .Include(i => i.Inventory)
-                    .Include(s => s.OrderStatus)
-                    .Include(o => o.Order)
-                    .ThenInclude(u => u.User)
-                    .ThenInclude(u => u.UserDetails)
-                    .ThenInclude(a => a.Address)
-                    .ThenInclude(c => c.City)
-                    .ThenInclude(s => s.State)
-                    .ThenInclude(c => c.Country)
-                    .Where(o => o.OrderId == orderId).ToListAsync();
 
-                return orderDetails;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error occurred while fetching order details. " + ex.Message);
-                return null;
-            }
-        }
         public async Task<List<City>> GetAllCities()
         {
             try
@@ -221,6 +199,34 @@ namespace LogisticsManagement.DataAccess.Repository
             catch (Exception ex)
             {
                 Console.WriteLine("Error occurred while fetching Cities" + ex.Message);
+                return null;
+            }
+        }
+        #endregion
+
+
+        #region ---------------- Order Operations ------------------------
+        public async Task<List<OrderDetail>> GetAllOrderDetails(int orderId)
+        {
+            try
+            {
+                List<OrderDetail> orderDetails = await _dbContext.OrderDetails
+                    .Include(i => i.Inventory)
+                    .Include(s => s.OrderStatus)
+                    .Include(o => o.Order)
+                    .ThenInclude(u => u.User)
+                    .ThenInclude(u => u.UserDetails)
+                    .ThenInclude(a => a.Address)
+                    .ThenInclude(c => c.City)
+                    .ThenInclude(s => s.State)
+                    .ThenInclude(c => c.Country)
+                    .Where(o => o.OrderId == orderId).ToListAsync();
+
+                return orderDetails;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred while fetching order details. " + ex.Message);
                 return null;
             }
         }
@@ -267,5 +273,7 @@ namespace LogisticsManagement.DataAccess.Repository
                 return null;
             }
         }
+
+        #endregion
     }
 }

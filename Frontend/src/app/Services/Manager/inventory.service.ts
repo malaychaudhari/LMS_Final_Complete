@@ -10,7 +10,7 @@ import { AuthService } from '../Common/auth.service';
 export class InventoryService {
   apiUrl = 'http://localhost:5181/api/inventory';
 
-  constructor(private http: HttpClient,private authService: AuthService) {}
+  constructor(private http: HttpClient,private authService: AuthService,) {}
 
   getInventories(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.apiUrl);

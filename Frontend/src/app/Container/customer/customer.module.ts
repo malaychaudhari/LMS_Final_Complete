@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { FormsModule } from '@angular/forms'; 
 import { ProfileComponent } from './profile/profile.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
     CheckoutComponent,
     HomeComponent,
     MyOrdersComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatTableModule,
     MatSortModule,
     MatIconModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     FormsModule 
   ],

@@ -12,6 +12,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CustomerGuard } from '../../Services/Guards/customer-guard.service';
 import { ProfileComponent } from './profile/profile.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
     canActivate: [CustomerGuard],
 
     children: [
-      { path: '', redirectTo: 'products', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       // { path: '', component: HomeComponent },
       {
         path: 'home',
@@ -55,6 +56,11 @@ const routes: Routes = [
       {
         path: 'my-orders',
         component: MyOrdersComponent,
+        canActivate: [CustomerGuard],
+      },
+      {
+        path: 'order-details/:id',
+        component: OrderDetailComponent,
         canActivate: [CustomerGuard],
       },
       {path: 'profile', component: ProfileComponent, canActivate: [CustomerGuard]},

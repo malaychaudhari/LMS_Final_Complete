@@ -13,8 +13,8 @@ export class DriverComponent {
   
   navigationLinks:SideNavLink[] = [
     
-    {path:'view-assigned-orders', label: 'Assigned Orders', icon : '../../../assets/Images/Manager/resource_assignment_2.png'},
-    {path:'view-completed-orders', label: 'Completed Orders', icon : '../../../assets/Images/Manager/resource_assignment_2.png'}
+    {path:'view-assigned-orders', label: 'Assigned Orders', icon : '../../../assets/Images/Driver/assigned-order.png'},
+    {path:'view-completed-orders', label: 'Completed Orders', icon : '../../../assets/Images/Driver/completed-order.png'}
   ];
 
 }

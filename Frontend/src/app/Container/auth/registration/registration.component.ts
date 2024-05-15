@@ -20,13 +20,14 @@ export class RegistrationComponent {
     'https://www.freshbooks.com/wp-content/uploads/2022/01/what-is-a-warehouse.jpg';
 
   user: User = {} as User;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group(
@@ -114,14 +115,25 @@ export class RegistrationComponent {
   }
 
   signUp(user: User) {
+    this.isLoading = true;
+
     this.authService.signUp(user).subscribe({
       next: (res) => {
+        this.isLoading = false;
+
         this.toastr.success('Success', 'SignUp Successfull');
         this.router.navigate(['/auth/login']);
         this.registrationForm.reset();
       },
       error: (error) => {
-        this.toastr.error('Error', error?.error?.error);
+        this.isLoading = false;
+
+        if (error.status === 0) {
+          this.toastr.error("Unable to establish connection. The server may not be running or is currently inaccessible. Please try again later");
+        }
+        else {
+          this.toastr.error('Error', error?.error?.error);
+        }
       },
     });
     this.registrationForm.reset();

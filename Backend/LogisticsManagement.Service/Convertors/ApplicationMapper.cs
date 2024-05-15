@@ -67,17 +67,22 @@ namespace LogisticsManagement.Service.Convertors
                 CreateMap<VehicleType, VehicleTypeDTO>();
 
                 CreateMap<OrderDetail, OrderDTO>()
-                 //.ForMember(dest => dest.OrderDetailId, opt => opt.MapFrom(src => src.Id))
-                 //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Order.Id))
+                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.OrderId))
+                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Order.User.Id))
+
+                 .ForMember(dest => dest.OrderDetailId, opt => opt.MapFrom(src => src.Id))
+
+                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.Order.OrderDate))
                  .ForMember(dest => dest.InventoryId, opt => opt.MapFrom(src => src.InventoryId))
                  .ForMember(dest => dest.InventoryName, opt => opt.MapFrom(src => src.Inventory.Name))
                  .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
                  .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => src.OrderStatusId))
-                 //.ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.OrderStatus.Status))
-                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Order.UserId))
+                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.OrderStatus.Status))
+                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Order.User.Name))
                  .ForMember(dest => dest.SubTotal, opt => opt.MapFrom(src => src.SubTotal))
                  .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Order.TotalAmount))
-                 .ForMember(dest => dest.ExpectedArrivalTime, opt => opt.MapFrom(src => src.ExpectedArrivalTime)).ReverseMap();
+                 .ForMember(dest => dest.ExpectedArrivalTime, opt => opt.MapFrom(src => src.ExpectedArrivalTime));
+                //.ReverseMap();
 
 
 
@@ -93,8 +98,7 @@ namespace LogisticsManagement.Service.Convertors
                    .ForMember(dest => dest.InventoryId, opt => opt.MapFrom(src => src.InventoryId))
                    .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
                    .ForMember(dest => dest.SubTotal, opt => opt.MapFrom(src => src.SubTotal))
-                   .ForMember(dest => dest.ExpectedArrivalTime, opt => opt.MapFrom(src => src.ExpectedArrivalTime))
-                   .ReverseMap();
+                   .ForMember(dest => dest.ExpectedArrivalTime, opt => opt.MapFrom(src => src.ExpectedArrivalTime));
 
                 CreateMap<Order, OrderDTO>()
                     .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.UserId))

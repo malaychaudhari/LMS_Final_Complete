@@ -304,9 +304,13 @@
                           data-mdb-ripple-init
                           class="btn btn-primary px-4"
                           style="width: 70%"
-                          [disabled]="!registrationForm.valid"
+                          [disabled]="isLoading|| !registrationForm.valid"
                         >
-                          Sign in
+                        <div class=" button-with-loader" *ngIf="isLoading" >
+                          <span class="loader p-5"></span>
+                        </div>
+                        <span *ngIf="!isLoading">Sign in</span>
+                          
                         </button>
                       </div>
                     </div>

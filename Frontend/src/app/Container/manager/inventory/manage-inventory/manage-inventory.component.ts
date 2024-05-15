@@ -20,6 +20,7 @@ import { InventoryCategory } from '../../../../Models/InventoryCategory.model';
 import { InventoryService } from '../../../../Services/Manager/inventory.service';
 import { Inventory } from '../../../../Models/Inventory.model';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../../../Services/Common/loader.service';
 
 @Component({
   selector: 'app-manage-inventory',
@@ -43,7 +44,8 @@ export class ManageInventoryComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loaderService: LoaderService
   ) { }
 
   setValue(value: Inventory) {
@@ -110,13 +112,19 @@ export class ManageInventoryComponent implements OnInit {
   }
 
   uploadImage() {
+    this.loaderService.showLoader();
     this.inventoryService
       .fileUpload(this.file)
       .then((res) => {
+        // this.loaderService.hideLoader();
+
         this.inventory.image = res;
         this.postInventory(this.inventory);
       })
-      .catch((err) => { });
+      .catch((err) => {
+        // this.loaderService.hideLoader();
+
+      });
   }
 
   onFileSelected(event: any) {
@@ -175,7 +183,7 @@ export class ManageInventoryComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        this.toastr.error('Error', 'Failed to add Inventory');
+        this.toastr.error('Error', 'Failed to add Inventory\n'+err?.error.error);
       },
     });
   }

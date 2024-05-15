@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm: FormGroup;
   rememberMe: boolean = false;
-  isLoading:boolean=false;
+  isLoading: boolean = false;
 
   loginModal: Login = {} as Login;
 
@@ -22,7 +22,7 @@ export class LoginComponent {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -39,8 +39,8 @@ export class LoginComponent {
       rememberMe: [false],
     });
 
-   
-    
+
+
   }
 
   onSubmit(): void {
@@ -54,6 +54,7 @@ export class LoginComponent {
   }
 
   login(loginUser: Login) {
+    this.isLoading = true;
     this.authService.login(loginUser).subscribe({
       next: (res) => {
         this.toastr.success('Success', 'Login Successfull');
@@ -62,6 +63,8 @@ export class LoginComponent {
         const role = this.authService.getUserRole();
 
         if (role) {
+          this.isLoading = false;
+
           switch (role) {
             case 'Admin':
               this.router.navigate(['/admin']);
@@ -81,8 +84,16 @@ export class LoginComponent {
         }
       },
       error: (error) => {
+        this.isLoading = false;
+
         console.log(error);
-        this.toastr.error('Error', error?.error?.error);
+        if (error.status === 0) {
+          this.toastr.error("Unable to establish connection. The server may not be running or is currently inaccessible. Please try again later");
+        }
+        else {
+
+          this.toastr.error('Error', error?.error?.error);
+        }
       },
     });
   }

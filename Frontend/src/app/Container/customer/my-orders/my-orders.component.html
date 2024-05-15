@@ -1,15 +1,20 @@
+
+<div class="container mt-5">
+  <div class="h2 fw-medium text-uppercase">
+    Orders
+  </div>
+</div>
 <div class="order-container">
   <div *ngIf="orders.length < 1" class="card mt-5 p-5">
     <h1 class="text-center">You haven't placed any order yet</h1>
     <div class="d-flex flex-column justify-content-center">
-      <button type="submit" class="btn btn-primary rounded-2 p-2 mt-4"
-      routerLink="/customer/home" >Shop Now</button>
-  </div>
+      <button type="submit" class="btn btn-primary rounded-2 p-2 mt-4" routerLink="/customer/home">Shop Now</button>
+    </div>
   </div>
 
-  <div *ngIf="orders.length > 0" class="container example-container my-5">
+  <div *ngIf="orders.length > 0" class="container example-container my-5 mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-      class="mat-elevation-z8">
+      class="">
 
       <!-- Position Column -->
       <ng-container matColumnDef="pName">
@@ -58,6 +63,25 @@
           <ng-container *ngIf="element.orderStatusId === 3">
             <span class="btn btn-success btn-sm">Delivered</span>
           </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action" [stickyEnd]="true">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+        <td mat-cell *matCellDef="let element" >
+          <div class="d-flex gap-2 justify-content-center" (click)="viewOrderDetail(element?.id)" >
+            <div>
+              <mat-icon
+                matTooltip="View Order Detail"
+                class="text-dark"
+                aria-hidden="false"
+                aria-label="Example description icon"
+                fontIcon="description"
+                matTooltipPosition='right'
+                
+              ></mat-icon>
+            </div>
+           
+          </div>
         </td>
       </ng-container>
 

@@ -120,7 +120,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="!this.isEditMode">
           <div class="col">
             <div>
               <input class="form-control form-control-md" formControlName="image" id="productImage" type="file"
@@ -133,6 +133,14 @@
                           ">
                 Image is required
               </small>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="this.isEditMode">
+          <div class="col">
+            <div class="inv-img">
+              <img class="img-fluid img-thumbnail rounded " [src]="selectedInventory.image" [alt]="selectedInventory.name" >
+
             </div>
           </div>
         </div>

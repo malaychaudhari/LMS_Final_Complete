@@ -19,22 +19,22 @@ export class AdminComponent {
     {
       path: 'signup-request',
       label: 'SignUp Requests',
-      icon: '../../../assets/Images/Manager/inventory_1.png',
+      icon: '../../../assets/Images/Admin/add-user.png',
     },
     {
       path: 'manager',
       label: 'Managers',
-      icon: '../../../assets/Images/Manager/inventory_1.png',
+      icon: '../../../assets/Images/Admin/manager.png',
     },
     {
       path: 'driver',
       label: 'Drivers',
-      icon: '../../../assets/Images/Manager/inventory_1.png',
+      icon: '../../../assets/Images/Admin/driver.png',
     },
     {
       path: 'customer',
       label: 'Customers',
-      icon: '../../../assets/Images/Manager/inventory_1.png',
+      icon: '../../../assets/Images/Admin/people.png',
     },
   ];
 }

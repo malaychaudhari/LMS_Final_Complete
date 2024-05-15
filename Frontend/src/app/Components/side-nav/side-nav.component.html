@@ -5,7 +5,7 @@
   <div class="side-nav_bg-color"></div>
 
   <div class="logo">
-    <h4 *ngIf="commonService.sideBar">
+    <h4 *ngIf="commonService.sideBar" class="px-4">
       <a routerLink="dashboard">
         <svg
           version="1.2"
@@ -152,7 +152,7 @@
       </a>
     </h4>
 
-    <h4 *ngIf="!commonService.sideBar">
+    <h4 *ngIf="!commonService.sideBar" class="ps-3 pe-3">
       <a routerLink="dashboard">
         <svg
           version="1.2"

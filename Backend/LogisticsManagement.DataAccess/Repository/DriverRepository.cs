@@ -17,6 +17,7 @@ namespace LogisticsManagement.DataAccess.Repository
             _dbContext = context;
         }
 
+        #region ---------------- Order Operations ------------------------------
         public async Task<List<ResourceMapping>?> ViewAssignedOrders(int driverId)
         {
             try
@@ -62,7 +63,9 @@ namespace LogisticsManagement.DataAccess.Repository
                 return null;
             }
         }
+        #endregion
 
+        #region -------------------- Status Operations ----------------------
         public async Task<int> UpdateStatus(int orderId, int orderStatusId)
         {
             try
@@ -109,5 +112,6 @@ namespace LogisticsManagement.DataAccess.Repository
                 return [];
             }
         }
+        #endregion
     }
 }

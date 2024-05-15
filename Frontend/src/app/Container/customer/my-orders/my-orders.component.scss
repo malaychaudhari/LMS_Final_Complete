@@ -1,24 +1,31 @@
+
+.example-container {
+  margin-top: 2rem;
+    // height: 100%;
+  overflow: auto;
+}
+
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
+
   
   th.mat-sort-header-sorted {
     color: black;
 
 
   }
-  .example-container {
-    margin-top: 2rem;
-    //   height: 100%;
-    overflow: auto;
-    
+
+  tr:hover{
+    background: rgb(240, 239, 241);
+    // cursor: pointer;
   }
+
   .order-container{
     min-height: 58.2dvh;
   }
 
   .card{
-
     margin: 0 40px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }

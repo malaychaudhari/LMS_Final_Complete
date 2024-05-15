@@ -102,7 +102,7 @@ namespace LogisticsManagement.WebAPI.Controllers
                 }
                 if (address.Id > 0)
                 {
-                    return BadRequest(ApiResponseHelper.Response(false, HttpStatusCode.BadRequest, null, "Please don't send Id while addin address"));
+                    return BadRequest(ApiResponseHelper.Response(false, HttpStatusCode.BadRequest, null, "Please don't send Id while adding address"));
                 }
 
                 int addedAddressId = await _customerService.AddAddressAsync(address);

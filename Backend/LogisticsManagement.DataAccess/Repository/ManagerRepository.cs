@@ -534,7 +534,8 @@ namespace LogisticsManagement.DataAccess.Repository
                 return await _db.Orders.Include(u=>u.User)
                                        .Include(o => o.OrderDetails)
                                        .ThenInclude(i=>i.Inventory)
-                                       //.ThenInclude(d => d.OrderStatus)
+                                       .Include(o => o.OrderDetails)
+                                       .ThenInclude(od => od.OrderStatus)
                                        .ToListAsync();
             }
             catch (Exception ex)

@@ -16,6 +16,10 @@ export class OrderService {
     return this.http.get<ApiResponse>(this.apiUrl)
   }
 
+  getOrderById(orderId:number):Observable<ApiResponse>{
+    return this.http.get<ApiResponse>(`${this.apiUrl}/order-details/${orderId}`);
+  }
+
   postOrder(orderData: Order): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(`${this.apiUrl}`, orderData);
   }

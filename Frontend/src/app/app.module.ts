@@ -29,6 +29,8 @@ import { CustomerModule } from './Container/customer/customer.module';
 import { DriverModule } from './Container/driver/driver.module';
 import { HeaderComponent } from './Container/customer/header/header.component';
 import { FooterComponent } from './Container/customer/footer/footer.component';
+import { SpinnerComponent } from './Components/spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { FooterComponent } from './Container/customer/footer/footer.component';
     NotFound404Component,
     HeaderComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -57,6 +60,7 @@ import { FooterComponent } from './Container/customer/footer/footer.component';
     MatTableModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatProgressSpinnerModule
   ],
   providers: [
     provideAnimationsAsync(),

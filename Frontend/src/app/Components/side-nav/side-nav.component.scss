@@ -14,6 +14,7 @@ a {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 .side-nav_bg-image {
   position: absolute;
   height: 95%;
@@ -25,6 +26,7 @@ a {
   background-repeat: repeat-y;
   background-attachment: fixed;
 }
+
 .side-nav_bg-color {
   position: absolute;
   height: 100%;
@@ -43,18 +45,22 @@ a {
   background-color: rgba(180, 180, 180, 0.3);
 }
 
+
+
+
+
 // logo
 .logo {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   height: 50px;
-  padding: 0 2rem 1rem 2rem;
 
   a {
     height: 100%;
+
     svg {
       height: 100%;
-      
+
     }
   }
 }
@@ -69,17 +75,19 @@ a {
 .user-profile {
   display: flex;
 }
+
 .user-image {
   width: 35px;
   height: 35px;
   margin-right: 1rem;
-  
+
   img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
   }
 }
+
 .hamburger-image {
   width: 35px;
   height: 35px;
@@ -96,6 +104,7 @@ a {
   display: flex;
   align-items: center;
 }
+
 .user-dropdown-icons {
   margin-left: 1rem;
 }
@@ -104,6 +113,7 @@ a {
 .user-dropdown_links {
   margin-top: 0.5rem;
 }
+
 .my-profile,
 .logout {
   padding: 0.5rem;
@@ -112,6 +122,7 @@ a {
     background-color: #b4b4b445;
     border-radius: 3px;
   }
+
   svg {
     margin-right: 26px;
   }
@@ -124,6 +135,7 @@ a {
   ul {
     li {
       width: 100%;
+
       a {
         display: inline-block;
         width: 100%;
@@ -144,6 +156,7 @@ a {
     }
   }
 }
+
 .active {
   background-color: #e91e63 !important;
 }

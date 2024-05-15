@@ -5,12 +5,13 @@ import {
   HttpHandler,
   HttpEvent,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { AuthService } from '../Common/auth.service';
+import { LoaderService } from '../Common/loader.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private loaderService: LoaderService) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -18,6 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Check if the user is logged in
     if (this.authService.isLoggedIn()) {
+    this.loaderService.showLoader();
+
       const authToken = this.authService.getToken();
 
       // add the token to the headers for requests requiring authorization
@@ -27,7 +30,9 @@ export class AuthInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${authToken}`,
           },
         });
-        return next.handle(authRequest);
+        return next.handle(authRequest).pipe(
+          finalize(() => this.loaderService.hideLoader())
+        );;
       }
     }
     console.log('Interceptor');

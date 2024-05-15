@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { OrderService } from '../../../Services/Customer/order.service';
 import { Order } from '../../../Models/Order.model';
 import { AuthService } from '../../../Services/Common/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-orders',
@@ -13,11 +14,15 @@ import { AuthService } from '../../../Services/Common/auth.service';
 })
 
 export class MyOrdersComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['pName', 'quantity', 'total', 'oDate', 'oStatus'];
+  displayedColumns: string[] = ['pName', 'quantity', 'total', 'oDate', 'oStatus','action'];
   orders: Order[] = [];
   dataSource: MatTableDataSource<Order>;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private orderService: OrderService, private authService: AuthService) { }
+  constructor(private _liveAnnouncer: LiveAnnouncer, 
+    private orderService: OrderService, 
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -43,6 +48,9 @@ export class MyOrdersComponent implements AfterViewInit, OnInit {
     })
   }
 
+  viewOrderDetail(orderId: number) {
+    this.router.navigate(['customer/order-details', orderId]);
+  }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {

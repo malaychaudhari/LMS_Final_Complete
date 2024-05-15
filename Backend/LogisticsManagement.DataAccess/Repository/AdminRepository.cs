@@ -18,6 +18,8 @@ namespace LogisticsManagement.DataAccess.Repository
             _dbContext = context;
 
         }
+
+        #region --------------------- User Operations ----------------
         //Get user details by id
         public async Task<User?> GetUserById(int userId)
         {
@@ -152,6 +154,19 @@ namespace LogisticsManagement.DataAccess.Repository
             }
         }
 
+        public async Task<int> GetTotalUsersCount(int userRoleId)
+        {
+            try
+            {
+                return await _dbContext.Users.Where(u => u.RoleId == userRoleId).CountAsync();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred while fetching total users count\n" + e.Message);
+                return -1;
+            }
+        }
 
         // Assign manager to warehouse 
         public async Task<int> AssignManagerToWarehouse(int managerId, int warehouseId)
@@ -174,20 +189,7 @@ namespace LogisticsManagement.DataAccess.Repository
             }
         }
 
-
-        public async Task<int> GetTotalUsersCount(int userRoleId)
-        {
-            try
-            {
-                return await _dbContext.Users.Where(u => u.RoleId == userRoleId).CountAsync();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("An error occurred while fetching total users count\n" + e.Message);
-                return -1;
-            }
-        }
+        #endregion
 
         #region ----------------- Wareouse Operations -----------------
 
