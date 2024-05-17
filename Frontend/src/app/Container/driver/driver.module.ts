@@ -8,6 +8,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     MatSortModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule
   ],
   exports: [
     AssignedOrdersComponent,

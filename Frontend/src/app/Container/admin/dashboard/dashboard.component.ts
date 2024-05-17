@@ -6,6 +6,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Order } from '../../../Models/Order.model';
 import { OrderService } from '../../../Services/Common/order.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit {
     'totalAmount',
     'inventoryName',
     'quantity',
-    'statusId',
+    'status',
+    'action'
   ];
   orders: Order[] = [];
   recentOrders: Order[] = [];
@@ -30,7 +32,9 @@ export class DashboardComponent implements OnInit {
   dataSource: MatTableDataSource<Order>;
 
   constructor( private orderService: OrderService,
-    private liveAnnouncer: LiveAnnouncer,) { }
+    private liveAnnouncer: LiveAnnouncer,
+    private router:Router
+    ) { }
 
   adminStatisticsService:AdminStatisticsService= inject(AdminStatisticsService);
 
@@ -60,7 +64,6 @@ export class DashboardComponent implements OnInit {
       next: (response) => {
         this.isLoading= true;
         this.orders = response.data as Order[];
-        console.log(JSON.stringify(this.orders));
         
         this.orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
         this.recentOrders = this.orders.slice(0, 5);
@@ -85,6 +88,7 @@ export class DashboardComponent implements OnInit {
       this.liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-
+  viewOrderDetail(orderId: number) {
+    this.router.navigate(['admin/order-details', orderId]);
+  }
 }

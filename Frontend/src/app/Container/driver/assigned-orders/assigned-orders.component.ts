@@ -24,7 +24,8 @@ export class AssignedOrdersComponent implements  OnInit {
     'caddress',
     'vehicle',
     'orderStatus',
-    'action',
+    'updateStatus',
+    'action'
   ];
   resources: ResourceAllocation[] = [];
   dataSource: MatTableDataSource<ResourceAllocation>;
@@ -93,5 +94,9 @@ export class AssignedOrdersComponent implements  OnInit {
         
        }
     })
+  }
+
+  viewOrderDetail(orderId: number) {
+    this.router.navigate(['driver/order-details', orderId]);
   }
 }

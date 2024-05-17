@@ -31,6 +31,8 @@ import { HeaderComponent } from './Container/customer/header/header.component';
 import { FooterComponent } from './Container/customer/footer/footer.component';
 import { SpinnerComponent } from './Components/spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { OrderDetailsComponent } from './Components/order-details/order-details.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HeaderComponent,
     FooterComponent,
     SpinnerComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -58,6 +61,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AdminModule,
     AuthModule,
     MatTableModule,
+    MatIconModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatProgressSpinnerModule

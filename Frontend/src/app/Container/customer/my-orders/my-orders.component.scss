@@ -3,6 +3,8 @@
   margin-top: 2rem;
     // height: 100%;
   overflow: auto;
+  padding: 0;
+
 }
 
 table {
@@ -33,4 +35,10 @@ table {
   //   width: 100%;
   //   // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   // }
+  
+  @media (width <= 575px) {
+    .order-container{
+      padding:0 15px;
+    }
+  }
   

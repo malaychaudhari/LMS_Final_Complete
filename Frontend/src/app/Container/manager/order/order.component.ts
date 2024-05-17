@@ -11,6 +11,7 @@ import { User } from '../../../Models/User.model';
 import { Order } from '../../../Models/Order.model';
 import { UserService } from '../../../Services/Common/user.service';
 import { OrderService } from '../../../Services/Common/order.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -25,6 +26,7 @@ export class OrderComponent {
     'inventoryName',
     'quantity',
     'statusId',
+    'action'
   ];
   orders: Order[] = [];
   dataSource: MatTableDataSource<Order>;
@@ -32,7 +34,8 @@ export class OrderComponent {
   constructor(
     private orderService: OrderService,
     private liveAnnouncer: LiveAnnouncer,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router:Router
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -66,5 +69,8 @@ export class OrderComponent {
     } else {
       this.liveAnnouncer.announce('Sorting cleared');
     }
+  }
+  viewOrderDetail(orderId: number) {
+    this.router.navigate(['manager/order-details', orderId]);
   }
 }

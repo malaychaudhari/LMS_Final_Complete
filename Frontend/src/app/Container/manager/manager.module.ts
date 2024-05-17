@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AllocatedResourceComponent } from './allocated-resource/allocated-resource.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AllocatedResourceComponent } from './allocated-resource/allocated-resou
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatTooltipModule
   ],
   exports: [
     InventoryComponent,

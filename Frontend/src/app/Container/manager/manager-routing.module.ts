@@ -13,6 +13,7 @@ import { ResourceAssignmentComponent } from './resource-assignment/resource-assi
 import { AllocatedResourceComponent } from './allocated-resource/allocated-resource.component';
 import { ManagerGuard } from '../../Services/Guards/manager-guard.service';
 import { NotFound404Component } from '../../Components/not-found-404/not-found-404.component';
+import { OrderDetailsComponent } from '../../Components/order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
       {
         path: 'allocated-resource',
         component: AllocatedResourceComponent,
+        canActivate: [ManagerGuard],
+      },
+      {
+        path: 'order-details/:id',
+        component: OrderDetailsComponent,
         canActivate: [ManagerGuard],
       },
       {

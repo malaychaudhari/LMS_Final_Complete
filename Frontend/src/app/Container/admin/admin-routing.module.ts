@@ -10,6 +10,7 @@ import { AdminGuard } from '../../Services/Guards/admin-guard.service';
 import { LoginGuard } from '../../Services/Guards/login-guard.service';
 import { NotFound404Component } from '../../Components/not-found-404/not-found-404.component';
 import { AuthGuardService } from '../../Services/Guards/auth-guard.service';
+import { OrderDetailsComponent } from '../../Components/order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
       {
         path: 'customer',
         component: CustomerListComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'order-details/:id',
+        component: OrderDetailsComponent,
         canActivate: [AdminGuard],
       },
       {

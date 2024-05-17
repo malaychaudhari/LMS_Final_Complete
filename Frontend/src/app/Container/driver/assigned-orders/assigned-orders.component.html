@@ -64,7 +64,7 @@
 
 
     <!-- Change Delivery Status -->
-    <ng-container matColumnDef="action">
+    <ng-container matColumnDef="updateStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vehicle">
             Update Status
         </th>
@@ -75,6 +75,27 @@
             </div>
         </td>
     </ng-container>
+
+    <!-- View Order Details -->
+    <ng-container matColumnDef="action" [stickyEnd]="true">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+        <td mat-cell *matCellDef="let element" >
+          <div class="d-flex gap-2 justify-content-center" (click)="viewOrderDetail(element?.orderId)" >
+            <div>
+              <mat-icon
+                matTooltip="View Order Detail"
+                class="text-dark"
+                aria-hidden="false"
+                aria-label="Example description icon"
+                fontIcon="description"
+                matTooltipPosition='right'
+                
+              ></mat-icon>
+            </div>
+           
+          </div>
+        </td>
+      </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

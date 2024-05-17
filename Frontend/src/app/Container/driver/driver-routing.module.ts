@@ -4,6 +4,7 @@ import { DriverComponent } from './driver.component';
 import { AssignedOrdersComponent } from './assigned-orders/assigned-orders.component';
 import { CompletedOrdersComponent } from './completed-orders/completed-orders.component';
 import { DriverGuard } from '../../Services/Guards/driver-guard.service';
+import { OrderDetailsComponent } from '../../Components/order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
       {
         path: 'view-completed-orders',
         component: CompletedOrdersComponent,
+        canActivate: [DriverGuard],
+      },
+      {
+        path: 'order-details/:id',
+        component: OrderDetailsComponent,
         canActivate: [DriverGuard],
       },
     ],
