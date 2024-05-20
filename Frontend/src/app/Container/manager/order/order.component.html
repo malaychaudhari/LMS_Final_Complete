@@ -50,7 +50,7 @@
         >
           orderDate
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.orderDate }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.orderDate | date }}</td>
       </ng-container>
 
       <ng-container matColumnDef="totalAmount">
@@ -98,7 +98,7 @@
           mat-sort-header
           sortActionDescription="Sort by statusId"
         >
-          statusId
+          status
         </th>
         <td mat-cell *matCellDef="let element">
           <span

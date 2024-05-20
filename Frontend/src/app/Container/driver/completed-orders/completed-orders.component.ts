@@ -13,7 +13,7 @@ import { AuthService } from '../../../Services/Common/auth.service';
   styleUrl: './completed-orders.component.scss'
 })
 export class CompletedOrdersComponent implements  OnInit {
-  displayedColumns: string[] = ['id', 'cname', 'cphone', 'caddress', 'vehicle', 'status'];
+  displayedColumns: string[] = ['id', 'cname', 'cphone', 'caddress', 'vehicle', 'date', 'status'];
   resources: ResourceAllocation[] = [];
   dataSource: MatTableDataSource<ResourceAllocation>;
   selectedOrder: ResourceAllocation = null;

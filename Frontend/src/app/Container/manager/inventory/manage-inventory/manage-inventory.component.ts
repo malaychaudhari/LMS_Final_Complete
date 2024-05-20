@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   SimpleChanges,
@@ -27,7 +28,7 @@ import { LoaderService } from '../../../../Services/Common/loader.service';
   templateUrl: './manage-inventory.component.html',
   styleUrl: './manage-inventory.component.scss',
 })
-export class ManageInventoryComponent implements OnInit {
+export class ManageInventoryComponent implements OnInit , OnChanges{
   InventoryForm: FormGroup;
 
   inventoryCategories: InventoryCategory[] = [];
@@ -48,6 +49,7 @@ export class ManageInventoryComponent implements OnInit {
     private loaderService: LoaderService
   ) { }
 
+
   setValue(value: Inventory) {
     if (value) {
       this.InventoryForm.get('name').setValue(value.name);
@@ -55,6 +57,7 @@ export class ManageInventoryComponent implements OnInit {
       this.InventoryForm.get('description').setValue(value.description);
       this.InventoryForm.get('quantity').setValue(value.stock);
       this.InventoryForm.get('price').setValue(value.price);
+
     }
   }
   inventoryCategoryService: InventoryCategoryService = inject(
@@ -63,7 +66,9 @@ export class ManageInventoryComponent implements OnInit {
   inventoryService: InventoryService = inject(InventoryService);
 
   ngOnInit(): void {
+    
     this.getInventoryCategories();
+    
     this.InventoryForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -82,12 +87,30 @@ export class ManageInventoryComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^\d+(\.\d{1,2})?$/),
       ]),
-      image: new FormControl('', [Validators.required]),
+       image:  new FormControl('', this.selectedInventory ? [] : [Validators.required]),
     });
   }
   onEditModeChange() {
     this.isEditMode = true;
+    
+    // this.updateImageValidator();
   }
+
+  updateImageValidator() {
+    const imageControl = this.InventoryForm.get('image');
+    if (this.isEditMode) {
+      imageControl.clearValidators();
+    } else {
+      imageControl.setValidators([Validators.required]);
+    }
+    imageControl.updateValueAndValidity();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+       this.updateImageValidator();
+
+  }
+
   onChange() {
     this.formSubitted = false;
   }

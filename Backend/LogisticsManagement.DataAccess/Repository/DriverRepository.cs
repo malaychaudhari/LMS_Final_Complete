@@ -81,6 +81,7 @@ namespace LogisticsManagement.DataAccess.Repository
                 // change assignment status
                 ResourceMapping resource = await _dbContext.ResourceMappings.Where(u => u.OrderId == orderId).FirstOrDefaultAsync();
                 resource.AssignmentStatusId = 2;
+                resource.UpdatedAt= DateTime.Now;
                 int driverId = resource.DriverId;
                 _dbContext.ResourceMappings.Update(resource);
 
@@ -88,6 +89,10 @@ namespace LogisticsManagement.DataAccess.Repository
                 UserDetail user = await _dbContext.UserDetails.Where(u => u.UserId == driverId).FirstOrDefaultAsync();
                 user.IsAvailable = true;
                 _dbContext.UserDetails.Update(user);
+
+                // Change vehicle availability status
+                Vehicle vehicle = await _dbContext.Vehicles.Where(v => v.Id == resource.VehicleId).FirstOrDefaultAsync();
+                vehicle.IsAvailable = true;
 
                 return _dbContext.SaveChanges();
             }
